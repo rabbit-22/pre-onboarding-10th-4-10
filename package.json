@@ -22,7 +22,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write --cache .",
-    "lint": "eslint --cache ."
+    "lint": "eslint --cache .",
+    "postinstall": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +51,7 @@
   "devDependencies": {
     "eslint": "^8.40.0",
     "eslint-config-prettier": "^8.8.0",
+    "husky": "^8.0.3",
     "prettier": "^2.8.8"
   }
 }
