@@ -6,6 +6,7 @@ import TodoList from '../components/todo/TodoList';
 
 const Main = () => {
   const [todoListData, setTodoListData] = useState<TodoDataType[] | []>([]);
+
   return (
     <div className="container">
       <div className="inner">

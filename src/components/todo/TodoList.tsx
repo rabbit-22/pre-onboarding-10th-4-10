@@ -1,14 +1,22 @@
 import './Todo.css';
-import { Dispatch, SetStateAction } from 'react';
-import { TodoDataType } from '../../types/types';
+import { SetStateType, TodoDataType } from '../../types/types';
+import TodoItem from './TodoItem';
 
 type Props = {
   todos: TodoDataType[] | [];
-  setTodos: Dispatch<SetStateAction<TodoDataType[] | []>>;
+  setTodos: SetStateType<TodoDataType[]>;
 };
 
 const TodoList = ({ todos, setTodos }: Props) => {
-  return <div>TodoList</div>;
+  return todos.length ? (
+    <ul>
+      {todos.map(({ id, title }) => (
+        <TodoItem key={id} id={id} title={title} setTodos={setTodos} />
+      ))}
+    </ul>
+  ) : (
+    <div className="empty-list">...</div>
+  );
 };
 
 export default TodoList;

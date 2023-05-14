@@ -1,19 +1,12 @@
-import {
-  Dispatch,
-  SetStateAction,
-  SyntheticEvent,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import './Todo.css';
 import { FaPlusCircle, FaSpinner } from 'react-icons/fa';
 import useFocus from '../../hooks/useFocus';
 import { createTodo } from '../../api/todo';
-import { TodoDataType } from '../../types/types';
+import { SetStateType, TodoDataType } from '../../types/types';
 
 type Props = {
-  setTodos: Dispatch<SetStateAction<TodoDataType[] | []>>;
+  setTodos: SetStateType<TodoDataType[]>;
 };
 
 const InputTodo = ({ setTodos }: Props) => {
