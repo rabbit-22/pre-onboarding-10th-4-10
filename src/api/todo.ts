@@ -23,7 +23,7 @@ export const createTodo = async (data: TodoInputType) => {
   }
 };
 
-export const deleteTodo = async (id: number) => {
+export const deleteTodo = async (id: string) => {
   try {
     const response = await apiRequest.delete({ url: `${RESOURCE}/${id}` });
 

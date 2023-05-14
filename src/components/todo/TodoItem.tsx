@@ -5,7 +5,7 @@ import { SetStateType, TodoDataType } from '../../types/types';
 import { deleteTodo } from '../../api/todo';
 
 type Props = {
-  id: number;
+  id: string;
   title: string;
   setTodos: SetStateType<TodoDataType[]>;
 };

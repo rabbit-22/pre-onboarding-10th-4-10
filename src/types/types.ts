@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 export type TodoDataType = {
   createdAt: string;
-  id: number;
+  id: string;
   title: string;
   updatedAt: string;
 };
