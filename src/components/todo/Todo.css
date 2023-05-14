@@ -61,6 +61,16 @@
   opacity: 0.5;
 }
 
+.empty-list {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 2.5rem;
+  letter-spacing: 1.5rem;
+  margin-left: 0.75rem;
+  color: #ececec;
+}
+
 .item {
   list-style-type: none;
   padding: 17px 1.5rem;
