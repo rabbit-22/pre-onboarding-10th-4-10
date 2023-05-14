@@ -1,9 +1,9 @@
 import { FaSpinner } from 'react-icons/fa';
 import { useCallback, useState } from 'react';
-import { SetStateType, TodoDataType } from '../../types/types';
 
-import { deleteTodo } from '../../api/todo';
+import { SetStateType, TodoDataType } from '../../types/types';
 import HandleItemButton from './HandleItemButton';
+import { handleRemoveTodo } from '../../utils/todos';
 
 type Props = {
   id: string;
@@ -14,15 +14,13 @@ type Props = {
 const TodoItem = ({ id, title, setTodos }: Props) => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleRemoveTodo = useCallback(async () => {
+  const handleRemoveTodoCallback = useCallback(async () => {
     try {
       setIsLoading(true);
-      await deleteTodo(id);
-
-      setTodos(prev => prev.filter(item => item.id !== id));
+      await handleRemoveTodo(id, setTodos);
     } catch (error) {
       console.error(error);
-      alert('Something went wrong.');
+      throw new Error('Something went wrong.');
     } finally {
       setIsLoading(false);
     }
@@ -33,7 +31,10 @@ const TodoItem = ({ id, title, setTodos }: Props) => {
       <span>{title}</span>
       <div className="item-option">
         {!isLoading ? (
-          <HandleItemButton mode="remove" handleClick={handleRemoveTodo} />
+          <HandleItemButton
+            mode="remove"
+            handleClick={handleRemoveTodoCallback}
+          />
         ) : (
           <FaSpinner className="spinner" />
         )}
