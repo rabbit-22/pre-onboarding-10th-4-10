@@ -1,0 +1,5 @@
+:root {
+  --base-border-radius: calc(0.5 * 100px);
+  --gray-50: #ececec;
+  --gray-100: #eaeaea;
+}
