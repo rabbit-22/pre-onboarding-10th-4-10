@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export type TodoDataType = {
   createdAt: string;
   id: number;
@@ -8,3 +10,5 @@ export type TodoDataType = {
 export type TodoInputType = {
   title: string;
 };
+
+export type SetStateType<T> = Dispatch<SetStateAction<T>>;
