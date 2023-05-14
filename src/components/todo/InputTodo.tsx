@@ -1,9 +1,10 @@
 import { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 import './Todo.css';
-import { FaPlusCircle, FaSpinner } from 'react-icons/fa';
+import { FaSpinner } from 'react-icons/fa';
 import useFocus from '../../hooks/useFocus';
 import { createTodo } from '../../api/todo';
 import { SetStateType, TodoDataType } from '../../types/types';
+import HandleItemButton from './HandleItemButton';
 
 type Props = {
   setTodos: SetStateType<TodoDataType[]>;
@@ -57,9 +58,7 @@ const InputTodo = ({ setTodos }: Props) => {
         disabled={isLoading}
       />
       {!isLoading ? (
-        <button className="input-submit" type="submit">
-          <FaPlusCircle className="btn-plus" />
-        </button>
+        <HandleItemButton mode="add" />
       ) : (
         <FaSpinner className="spinner" />
       )}

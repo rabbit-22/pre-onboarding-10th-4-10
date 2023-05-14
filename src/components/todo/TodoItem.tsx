@@ -1,8 +1,9 @@
-import { FaSpinner, FaTrash } from 'react-icons/fa';
+import { FaSpinner } from 'react-icons/fa';
 import { useCallback, useState } from 'react';
 import { SetStateType, TodoDataType } from '../../types/types';
 
 import { deleteTodo } from '../../api/todo';
+import HandleItemButton from './HandleItemButton';
 
 type Props = {
   id: string;
@@ -32,9 +33,7 @@ const TodoItem = ({ id, title, setTodos }: Props) => {
       <span>{title}</span>
       <div className="item-option">
         {!isLoading ? (
-          <button onClick={() => handleRemoveTodo()}>
-            <FaTrash className="btn-trash" />
-          </button>
+          <HandleItemButton mode="remove" handleClick={handleRemoveTodo} />
         ) : (
           <FaSpinner className="spinner" />
         )}
