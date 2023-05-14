@@ -1,17 +1,11 @@
-import axios from 'axios';
-import { TodoInputType } from '../types/types';
+import axios, { AxiosRequestConfig } from 'axios';
+import { TodoDataType, TodoInputType } from '../types/types';
 
-type BaseInstance = {
+export type BaseInstance = {
   url: string;
-};
-
-type GetDeleteType = BaseInstance & {
   request?: any;
-};
-
-type PostType = BaseInstance & {
-  data: TodoInputType;
-  config?: any;
+  data?: TodoInputType;
+  config?: AxiosRequestConfig;
 };
 
 const baseURL = process.env.REACT_APP_API_URL;
@@ -27,10 +21,10 @@ const baseInstance = axios.create({
 baseInstance.interceptors.response.use(({ data }) => data);
 
 const apiRequest = {
-  get: ({ url, request }: GetDeleteType) => baseInstance.get(url, request),
-  delete: ({ url, request }: GetDeleteType) =>
-    baseInstance.delete(url, request),
-  post: ({ url, data, config }: PostType) =>
+  get: ({ url, request }: BaseInstance) =>
+    baseInstance.get<TodoDataType[]>(url, request),
+  delete: ({ url, request }: BaseInstance) => baseInstance.delete(url, request),
+  post: ({ url, data, config }: BaseInstance) =>
     baseInstance.post(url, data, config),
 };
 
