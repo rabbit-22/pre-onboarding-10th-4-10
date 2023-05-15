@@ -6,18 +6,16 @@ import { SetStateType, TodoDataType } from '../../types/types';
 import HandleItemButton from './HandleItemButton';
 import { handleCreateTodos } from '../../utils/todos';
 
-type Props = {
+type InputTodoProps = {
   setTodos: SetStateType<TodoDataType[]>;
 };
 
-const InputTodo = ({ setTodos }: Props) => {
+const InputTodo = ({ setTodos }: InputTodoProps) => {
   const [inputText, setInputText] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { ref, setFocus } = useFocus();
 
-  useEffect(() => {
-    setFocus();
-  }, [setFocus]);
+  useEffect(setFocus, [setFocus]);
 
   const handleSubmitForm = useCallback(
     async (e: SyntheticEvent<HTMLFormElement>) => {

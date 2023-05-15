@@ -3,7 +3,7 @@ import { TodoDataType, TodoInputType } from '../types/types';
 
 export type BaseInstance = {
   url: string;
-  request?: any;
+  request?: AxiosRequestConfig;
   data?: TodoInputType;
   config?: AxiosRequestConfig;
 };

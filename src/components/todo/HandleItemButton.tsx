@@ -5,7 +5,7 @@ type Props = {
   handleClick?: () => void;
 };
 
-const HandleItemButton = ({ mode, handleClick }: Props) => {
+const ItemButton = ({ mode, handleClick }: Props) => {
   if (mode === 'remove') {
     return (
       <button onClick={() => handleClick!()}>
@@ -21,4 +21,4 @@ const HandleItemButton = ({ mode, handleClick }: Props) => {
   );
 };
 
-export default HandleItemButton;
+export default ItemButton;

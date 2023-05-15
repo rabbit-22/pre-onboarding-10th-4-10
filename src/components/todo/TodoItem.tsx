@@ -5,13 +5,13 @@ import { SetStateType, TodoDataType } from '../../types/types';
 import HandleItemButton from './HandleItemButton';
 import { handleRemoveTodo } from '../../utils/todos';
 
-type Props = {
+type TodoItemProps = {
   id: string;
   title: string;
   setTodos: SetStateType<TodoDataType[]>;
 };
 
-const TodoItem = ({ id, title, setTodos }: Props) => {
+const TodoItem = ({ id, title, setTodos }: TodoItemProps) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRemoveTodoCallback = useCallback(async () => {

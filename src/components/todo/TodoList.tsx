@@ -2,12 +2,12 @@ import './Todo.css';
 import { SetStateType, TodoDataType } from '../../types/types';
 import TodoItem from './TodoItem';
 
-type Props = {
+type TodoListProps = {
   todos: TodoDataType[] | [];
   setTodos: SetStateType<TodoDataType[]>;
 };
 
-const TodoList = ({ todos, setTodos }: Props) => {
+const TodoList = ({ todos, setTodos }: TodoListProps) => {
   const EMPTY_ITEMS = todos.length > 0;
 
   if (!EMPTY_ITEMS) return <div className="empty-list">...</div>;
