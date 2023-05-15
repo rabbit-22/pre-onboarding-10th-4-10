@@ -3,7 +3,7 @@ import './Todo.css';
 import { FaSpinner } from 'react-icons/fa';
 import useFocus from '../../hooks/useFocus';
 import { SetStateType, TodoDataType } from '../../types/types';
-import HandleItemButton from './HandleItemButton';
+import ItemButton from './ItemButton';
 import { handleCreateTodos } from '../../utils/todos';
 
 type InputTodoProps = {
@@ -39,7 +39,7 @@ const InputTodo = ({ setTodos }: InputTodoProps) => {
         disabled={isLoading}
       />
       {!isLoading ? (
-        <HandleItemButton mode="add" />
+        <ItemButton mode="add" />
       ) : (
         <FaSpinner className="spinner" />
       )}

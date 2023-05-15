@@ -2,7 +2,7 @@ import { FaSpinner } from 'react-icons/fa';
 import { useCallback, useState } from 'react';
 
 import { SetStateType, TodoDataType } from '../../types/types';
-import HandleItemButton from './HandleItemButton';
+import ItemButton from './ItemButton';
 import { handleRemoveTodo } from '../../utils/todos';
 
 type TodoItemProps = {
@@ -31,10 +31,7 @@ const TodoItem = ({ id, title, setTodos }: TodoItemProps) => {
       <span>{title}</span>
       <div className="item-option">
         {!isLoading ? (
-          <HandleItemButton
-            mode="remove"
-            handleClick={handleRemoveTodoCallback}
-          />
+          <ItemButton mode="remove" handleClick={handleRemoveTodoCallback} />
         ) : (
           <FaSpinner className="spinner" />
         )}
