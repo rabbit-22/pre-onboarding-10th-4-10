@@ -1,8 +1,8 @@
 .form-container {
   width: 100%;
   margin-bottom: 20px;
-  border-radius: var(--base-border-radius);
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.38);
+  border-radius: 6px;
+  border: 1px solid #dedede;
 }
 
 .form-box {
@@ -10,11 +10,26 @@
   justify-content: space-evenly;
 }
 
+.form-box:hover {
+  outline: 3px solid #dedede;
+  border-radius: 6px;
+}
+
+.form-box:active {
+  outline: 1px solid #9f9f9f;
+}
+
+.progress {
+  display: flex;
+  justify-content: space-evenly;
+  outline: 1px solid #9f9f9f;
+}
+
 .form-box .input-text {
   width: 85%;
   padding-right: 5px;
   padding-left: 10px;
-  border-radius: var(--base-border-radius);
+  border-radius: 6px;
   background-color: transparent;
   font-size: 1rem;
   font-weight: 400;
@@ -27,6 +42,7 @@
   cursor: pointer;
 }
 .input-text,
+.input-search,
 .input-submit {
   height: 45px;
   outline: none;
@@ -36,6 +52,16 @@
 .btn-plus {
   color: darkcyan;
   font-size: 20px;
+}
+
+.btn-search {
+  color: #7d7d7d;
+  font-size: 20px;
+}
+
+.input-search {
+  display: flex;
+  align-items: center;
 }
 
 .spinner {
@@ -103,7 +129,7 @@
   border: 1px solid #dedede;
   box-shadow: 0px 0px 1px rgba(50, 50, 50, 0.05),
     0px 2px 4px rgba(50, 50, 50, 0.1);
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 .dropdown-box {
