@@ -1,9 +1,8 @@
-import { FaSpinner } from 'react-icons/fa';
 import { useCallback, useState } from 'react';
-
 import { SetStateType, TodoDataType } from '../../types/types';
 import ItemButton from './ItemButton';
 import { handleRemoveTodo } from '../../utils/todos';
+import Spinner from '../base/Spinner';
 
 type TodoItemProps = {
   id: string;
@@ -33,7 +32,7 @@ const TodoItem = ({ id, title, setTodos }: TodoItemProps) => {
         {!isLoading ? (
           <ItemButton mode="remove" handleClick={handleRemoveTodoCallback} />
         ) : (
-          <FaSpinner className="spinner" />
+          <Spinner />
         )}
       </div>
     </li>

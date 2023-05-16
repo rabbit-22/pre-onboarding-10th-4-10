@@ -1,7 +1,8 @@
 import { FaPlusCircle, FaTrash } from 'react-icons/fa';
+import { IoSearch } from 'react-icons/io5';
 
 type Props = {
-  mode: 'add' | 'remove';
+  mode: 'add' | 'remove' | 'search';
   handleClick?: () => void;
 };
 
@@ -13,7 +14,13 @@ const ItemButton = ({ mode, handleClick }: Props) => {
       </button>
     );
   }
-
+  if (mode === 'search') {
+    return (
+      <div className="input-search">
+        <IoSearch className="btn-search" />
+      </div>
+    );
+  }
   return (
     <button className="input-submit" type="submit">
       <FaPlusCircle className="btn-plus" />
