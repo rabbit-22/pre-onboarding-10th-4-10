@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getSearchList } from '../api/search';
 
 const useFetchSuggestions = (keyword: string) => {
@@ -9,7 +9,7 @@ const useFetchSuggestions = (keyword: string) => {
     useState<boolean>(false);
   const [debouncedInputValue, setDebouncedInputValue] = useState<string>('');
 
-  const getSuggestions = useCallback(async () => {
+  const getSuggestions = async () => {
     setIsSuggestionLoading(true);
     const data = await getSearchList(debouncedInputValue, page);
     setSuggestions(prev => [...prev, ...data.data.result]);
@@ -21,23 +21,24 @@ const useFetchSuggestions = (keyword: string) => {
     } else {
       setHasNextPage(false);
     }
-  }, [debouncedInputValue]);
+    console.log(data.data);
+  };
 
   useEffect(() => {
-    setSuggestions([]);
-    setHasNextPage(false);
-    setPage(1);
     if (debouncedInputValue === '') {
       setSuggestions([]);
       return;
     }
     getSuggestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedInputValue, getSuggestions]);
+  }, [debouncedInputValue]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setDebouncedInputValue(keyword);
+      setSuggestions([]);
+      setHasNextPage(false);
+      setPage(1);
     }, 500);
     return () => clearTimeout(timeoutId);
   }, [keyword]);

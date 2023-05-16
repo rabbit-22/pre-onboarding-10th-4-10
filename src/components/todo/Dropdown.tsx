@@ -32,29 +32,31 @@ const Dropdown = ({
   });
   if (suggestions.length > 0)
     return (
-      <div className="dropdown-container">
-        <ul className="dropdown-box">
-          {suggestions.map((suggestion, index) => (
-            <DropdownItem
-              key={index}
-              suggestion={suggestion}
-              keyword={keyword}
-              setTodos={setTodos}
-              setInputText={setInputText}
-            />
-          ))}
-          <div className="dropdown-loading">
-            {isLoading ? (
-              <Spinner />
-            ) : hasNextPage ? (
-              <div ref={ref}>
-                <IoEllipsisHorizontalSharp />
-              </div>
-            ) : (
-              <></>
-            )}
-          </div>
-        </ul>
+      <div className="dropdown-parent">
+        <div className="dropdown-container">
+          <ul className="dropdown-box">
+            {suggestions.map((suggestion, index) => (
+              <DropdownItem
+                key={index}
+                suggestion={suggestion}
+                keyword={keyword}
+                setTodos={setTodos}
+                setInputText={setInputText}
+              />
+            ))}
+            <div className="dropdown-loading">
+              {isLoading ? (
+                <Spinner />
+              ) : hasNextPage ? (
+                <div ref={ref}>
+                  <IoEllipsisHorizontalSharp />
+                </div>
+              ) : (
+                <></>
+              )}
+            </div>
+          </ul>
+        </div>
       </div>
     );
   else return <></>;

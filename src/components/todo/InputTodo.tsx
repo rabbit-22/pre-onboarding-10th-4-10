@@ -22,7 +22,7 @@ const InputTodo = ({ setTodos }: InputTodoProps) => {
   useEffect(setFocus, [setFocus]);
 
   return (
-    <>
+    <div>
       <form className="form-container" onSubmit={handleSubmit}>
         <div
           className={'form-box' + (isLoading || isTyping ? ' progress' : '')}
@@ -54,7 +54,7 @@ const InputTodo = ({ setTodos }: InputTodoProps) => {
         setTodos={setTodos}
         setInputText={setInputText}
       />
-    </>
+    </div>
   );
 };
 
