@@ -21,7 +21,6 @@ const useFetchSuggestions = (keyword: string) => {
     } else {
       setHasNextPage(false);
     }
-    console.log(data.data);
   };
 
   useEffect(() => {
