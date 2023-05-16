@@ -1,5 +1,6 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getSearchList } from '../api/search';
+import { debounce } from '../utils/debounce';
 
 const useFetchSuggestions = (keyword: string) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -7,24 +8,27 @@ const useFetchSuggestions = (keyword: string) => {
   const [hasNextPage, setHasNextPage] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const getSuggestions = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const data = await getSearchList(keyword, page);
-      setSuggestions(prev => [...prev, ...data.data.result]);
+  const getSuggestions = useCallback(
+    debounce(async () => {
+      try {
+        setIsLoading(true);
+        const data = await getSearchList(keyword, page);
+        setSuggestions(prev => [...prev, ...data.data.result]);
 
-      if (data.data.qty !== page && data.data.result.length !== 0) {
-        setPage(prev => prev + 1);
-        setHasNextPage(true);
-      } else {
-        setHasNextPage(false);
-        setSuggestions([]);
+        if (data.data.qty !== page && data.data.result.length !== 0) {
+          setPage(prev => prev + 1);
+          setHasNextPage(true);
+        } else {
+          setHasNextPage(false);
+          setSuggestions([]);
+        }
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
       }
-      setIsLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  }, [keyword, page]);
+    }, 500),
+    [keyword]
+  );
 
   useEffect(() => {
     setHasNextPage(false);
@@ -34,7 +38,7 @@ const useFetchSuggestions = (keyword: string) => {
       return;
     }
     getSuggestions();
-  }, [keyword]);
+  }, [keyword, getSuggestions]);
 
   return [suggestions, isLoading, getSuggestions, hasNextPage] as const;
 };
