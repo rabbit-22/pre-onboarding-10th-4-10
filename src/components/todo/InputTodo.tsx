@@ -31,20 +31,22 @@ const InputTodo = ({ setTodos }: InputTodoProps) => {
   );
 
   return (
-    <form className="form-container" onSubmit={handleSubmitForm}>
-      <div className="form-box">
-        <input
-          className="input-text"
-          placeholder="Add new todo..."
-          ref={ref}
-          value={inputText}
-          onChange={e => setInputText(e.target.value)}
-          disabled={isLoading}
-        />
-        {!isLoading ? <ItemButton mode="add" /> : <Spinner />}
-      </div>
+    <>
+      <form className="form-container" onSubmit={handleSubmitForm}>
+        <div className="form-box">
+          <input
+            className="input-text"
+            placeholder="Add new todo..."
+            ref={ref}
+            value={inputText}
+            onChange={e => setInputText(e.target.value)}
+            disabled={isLoading}
+          />
+          {!isLoading ? <ItemButton mode="add" /> : <Spinner />}
+        </div>
+      </form>
       <Dropdown keyword={inputText} />
-    </form>
+    </>
   );
 };
 
