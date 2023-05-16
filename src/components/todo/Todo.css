@@ -17,12 +17,14 @@
 
 .form-box:active {
   outline: 1px solid #9f9f9f;
+  border-radius: 6px;
 }
 
 .progress {
   display: flex;
   justify-content: space-evenly;
   outline: 1px solid #9f9f9f;
+  border-radius: 6px;
 }
 
 .form-box .input-text {

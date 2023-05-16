@@ -29,7 +29,7 @@ const useFetchSuggestions = (keyword: string) => {
       setSuggestions([]);
       return;
     }
-    getSuggestions();
+    getSuggestions(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedInputValue]);
 
   useEffect(() => {
