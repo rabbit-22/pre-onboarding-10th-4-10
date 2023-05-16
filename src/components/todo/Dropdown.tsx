@@ -2,22 +2,28 @@ import React from 'react';
 import useIntersect from '../../hooks/useIntersect';
 import DropdownItem from './DropdownItem';
 import Spinner from '../base/Spinner';
-import useFetchSuggestions from '../../hooks/useFetchSuggestions';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { SetStateType, TodoDataType } from '../../types/types';
 
-const Dropdown = ({
-  keyword,
-  setTodos,
-  setInputText,
-}: {
+type DropDownTpye = {
   keyword: string;
+  isLoading: boolean;
+  hasNextPage: boolean;
+  suggestions: string[];
+  getSuggestions: () => Promise<void>;
   setTodos: SetStateType<TodoDataType[]>;
   setInputText: SetStateType<string>;
-}) => {
-  const [suggestions, isLoading, getSuggestions, hasNextPage] =
-    useFetchSuggestions(keyword);
+};
 
+const Dropdown = ({
+  keyword,
+  isLoading,
+  hasNextPage,
+  suggestions,
+  getSuggestions,
+  setTodos,
+  setInputText,
+}: DropDownTpye) => {
   const ref = useIntersect(async (entry, observer) => {
     observer.unobserve(entry.target);
     if (hasNextPage && !isLoading && keyword !== '') {

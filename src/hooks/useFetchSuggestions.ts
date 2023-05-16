@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getSearchList } from '../api/search';
 
 const useFetchSuggestions = (keyword: string) => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [page, setPage] = useState(1);
-  const [hasNextPage, setHasNextPage] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [debouncedInputValue, setDebouncedInputValue] = useState('');
+  const [page, setPage] = useState<number>(1);
+  const [hasNextPage, setHasNextPage] = useState<boolean>(false);
+  const [isSuggestionLoading, setIsSuggestionLoading] =
+    useState<boolean>(false);
+  const [debouncedInputValue, setDebouncedInputValue] = useState<string>('');
 
-  const getSuggestions = async () => {
-    setIsLoading(true);
+  const getSuggestions = useCallback(async () => {
+    setIsSuggestionLoading(true);
     const data = await getSearchList(debouncedInputValue, page);
     setSuggestions(prev => [...prev, ...data.data.result]);
+    setIsSuggestionLoading(false);
     if (data.data.qty < data.data.page) setHasNextPage(false);
     if (data.data.result.length !== 0) {
       setPage(prev => prev + 1);
@@ -19,8 +21,7 @@ const useFetchSuggestions = (keyword: string) => {
     } else {
       setHasNextPage(false);
     }
-    setIsLoading(false);
-  };
+  }, [debouncedInputValue]);
 
   useEffect(() => {
     setSuggestions([]);
@@ -30,8 +31,9 @@ const useFetchSuggestions = (keyword: string) => {
       setSuggestions([]);
       return;
     }
-    getSuggestions(); // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedInputValue]);
+    getSuggestions();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [debouncedInputValue, getSuggestions]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -40,7 +42,12 @@ const useFetchSuggestions = (keyword: string) => {
     return () => clearTimeout(timeoutId);
   }, [keyword]);
 
-  return [suggestions, isLoading, getSuggestions, hasNextPage] as const;
+  return [
+    suggestions,
+    isSuggestionLoading,
+    getSuggestions,
+    hasNextPage,
+  ] as const;
 };
 
 export default useFetchSuggestions;
