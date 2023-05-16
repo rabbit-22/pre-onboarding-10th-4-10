@@ -4,8 +4,17 @@ import DropdownItem from './DropdownItem';
 import Spinner from '../base/Spinner';
 import useFetchSuggestions from '../../hooks/useFetchSuggestions';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
+import { SetStateType, TodoDataType } from '../../types/types';
 
-const Dropdown = ({ keyword }: { keyword: string }) => {
+const Dropdown = ({
+  keyword,
+  setTodos,
+  setInputText,
+}: {
+  keyword: string;
+  setTodos: SetStateType<TodoDataType[]>;
+  setInputText: SetStateType<string>;
+}) => {
   const [suggestions, isLoading, getSuggestions, hasNextPage] =
     useFetchSuggestions(keyword);
 
@@ -24,6 +33,8 @@ const Dropdown = ({ keyword }: { keyword: string }) => {
               key={index}
               suggestion={suggestion}
               keyword={keyword}
+              setTodos={setTodos}
+              setInputText={setInputText}
             />
           ))}
           <div className="dropdown-loading">
