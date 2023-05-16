@@ -14,7 +14,6 @@ export async function handleCreateTodos(
 
     const newItem = { title: trimmed };
     const { data } = await createTodo(newItem);
-
     if (data) {
       setTodos(prev => [...prev, data]);
     }

@@ -13,7 +13,6 @@ const useFetchTodo = (setTodos: SetStateType<TodoDataType[]>) => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    console.log(inputText);
     await handleCreateTodos(inputText, setTodos);
     setIsLoading(false);
     setInputText('');
