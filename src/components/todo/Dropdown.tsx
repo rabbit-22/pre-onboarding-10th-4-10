@@ -20,7 +20,11 @@ const Dropdown = ({ keyword }: { keyword: string }) => {
       <div className="dropdown-container">
         <ul className="dropdown-box">
           {suggestions.map((suggestion, index) => (
-            <DropdownItem key={index} suggestion={suggestion} />
+            <DropdownItem
+              key={index}
+              suggestion={suggestion}
+              keyword={keyword}
+            />
           ))}
           <div className="dropdown-loading">
             {isLoading ? (

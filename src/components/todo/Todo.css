@@ -150,3 +150,7 @@
 .dropdown-item:active {
   background-color: #d5f4f1;
 }
+
+.active_colored {
+  color: #2bc9ba;
+}
