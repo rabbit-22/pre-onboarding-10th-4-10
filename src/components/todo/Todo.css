@@ -37,6 +37,12 @@
   font-weight: 400;
 }
 
+.input-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .input-submit {
   display: flex;
   align-items: center;
@@ -49,6 +55,7 @@
   height: 45px;
   outline: none;
   border: none;
+  text-overflow: ellipsis;
 }
 
 .btn-plus {
