@@ -3,9 +3,9 @@ import './Todo.css';
 import useFocus from '../../hooks/useFocus';
 import { SetStateType, TodoDataType } from '../../types/types';
 import ItemButton from './ItemButton';
-import Dropdown from '../dropdown/Dropdown';
 import Spinner from '../base/Spinner';
 import useFetchTodo from '../../hooks/useFetchTodo';
+import Dropdown from './Dropdown';
 
 export type InputTodoProps = {
   setTodos: SetStateType<TodoDataType[]>;
