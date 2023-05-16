@@ -12,17 +12,18 @@ const useFetchSuggestions = (keyword: string) => {
     setIsLoading(true);
     const data = await getSearchList(debouncedInputValue, page);
     setSuggestions(prev => [...prev, ...data.data.result]);
-    if (data.data.qty !== page && data.data.result.length !== 0) {
+    if (data.data.qty < data.data.page) setHasNextPage(false);
+    if (data.data.result.length !== 0) {
       setPage(prev => prev + 1);
       setHasNextPage(true);
     } else {
       setHasNextPage(false);
-      setSuggestions([]);
     }
     setIsLoading(false);
   };
 
   useEffect(() => {
+    setSuggestions([]);
     setHasNextPage(false);
     setPage(1);
     if (debouncedInputValue === '') {

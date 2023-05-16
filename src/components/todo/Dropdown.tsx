@@ -40,10 +40,12 @@ const Dropdown = ({
           <div className="dropdown-loading">
             {isLoading ? (
               <Spinner />
-            ) : (
+            ) : hasNextPage ? (
               <div ref={ref}>
                 <IoEllipsisHorizontalSharp />
               </div>
+            ) : (
+              <></>
             )}
           </div>
         </ul>
